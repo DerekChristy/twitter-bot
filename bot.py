@@ -31,11 +31,11 @@ def set_last_mention_id(last_mention_id, file):
 
 while True:
     prev_id = get_last_mention_id(id_file)
-    print("PREV ID: " + str(prev_id))
+    #print("PREV ID: " + str(prev_id))
     mentions = api.mentions_timeline(prev_id)
     
     for mention in mentions:
-        print("CUR ID: " + str(mention.id))
+        #print("CUR ID: " + str(mention.id))
         set_last_mention_id(mention.id, id_file)
         if((mention.text).lower().find("random-fact") != -1):
             obj = requests.get(url)
@@ -43,4 +43,4 @@ while True:
             fact = data['text']
             api.update_status('@' + mention.user.screen_name + " here is your fact:-\n" + fact)
             print('@' + mention.user.screen_name + " here is your fact:-\n" + fact)
-    time.sleep(10)
+    time.sleep(60)
